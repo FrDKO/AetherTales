@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class SliderView : MonoBehaviour
 {
-    public Text text;
-    
-    void Update()
+    public void displaySliderData(Slider slider)
     {
-        text.text = this.gameObject.GetComponent<Slider>().value.ToString();
+        this.GetComponent<Text>().text = slider.value.ToString(); 
     }
 }
