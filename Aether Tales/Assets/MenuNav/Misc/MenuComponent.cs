@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuOption : MonoBehaviour
+public class MenuComponent : MonoBehaviour
 {
-    Vector2 RestPosition;
+    public Vector2 RestPosition;
     public Vector2 ActivePosition;
 
     bool isComingIn = false;
@@ -12,16 +12,13 @@ public class MenuOption : MonoBehaviour
 
     public void Start()
     {
-        this.transform.localPosition = new Vector2(-1000,-1000);
-        RestPosition = this.transform.localPosition;
-        this.gameObject.SetActive(false);
-        
+        this.transform.localPosition = RestPosition;
     }
     public void Update()
     {
         if(isComingIn)
         {
-            this.transform.localPosition = Vector2.Lerp(this.transform.localPosition,ActivePosition,.2f);
+            this.transform.localPosition = Vector2.Lerp(this.transform.localPosition,ActivePosition,.06f);
         }
     }
     public void toActive()

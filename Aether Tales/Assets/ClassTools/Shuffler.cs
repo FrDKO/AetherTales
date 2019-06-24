@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shuffler<T>
+public static class Shuffler<T>
 {
-    public List<T> shuffle(List<T> list)
+    public static List<T> shuffle(List<T> list)
     {
         for(int i = 0; i<list.Count;i++)
         {

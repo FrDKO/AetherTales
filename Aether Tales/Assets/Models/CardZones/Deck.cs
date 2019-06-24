@@ -25,7 +25,7 @@ public class Deck: CardZone
 
     public void shuffle()
     {
-       setCardList(new Shuffler<Card>().shuffle(getCardList())); 
+       setCardList(Shuffler<Card>.shuffle(getCardList())); 
     }
 
 }

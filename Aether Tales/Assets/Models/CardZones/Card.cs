@@ -1,32 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable] 
-public class Card 
+[CreateAssetMenu]
+public class Card: ScriptableObject
 {
     Activator activator = new Activator();
-    private string cardName;
-    private string cardType;
-    private string effect;
-    private string trigger;
-    private string location;
-    private int cost;
-    private User user;
-    private bool isFlipped = false;
+    public  string CardName;
+    public string CardType;
+    public string CardDescription;
+    public int AttackRange;
+    public int AttackDamage;
+    public int AttackKnockback;
+    public string AttackType;
+    public string Effect;
+    public string Trigger;
+    public string Location;
+    public int Cost;
+ 
+    public Sprite artwork;
+    public Sprite usedBy;
+    public bool IsFlipped = false;
 
-    public string CardName { get => cardName; set => cardName = value; }
-    public string CardType { get => cardType; set => cardType = value; }
-    public string Effect { get => effect; set => effect = value; }
-    public string Trigger { get => trigger; set => trigger = value; }
-    public string Location { get => location; set => location = value; }
-    public int Cost { get => cost; set => cost = value; }
-    public User User { get => user; set => user = value; }
-    public bool IsFlipped { get => isFlipped; set => isFlipped = value; }
-
+    public string showCard()
+    {
+        return "[Name: " + CardName + "]\n"+ "[Cost: " + Cost + "]\n"+"[Type: " + CardType + "]\n" + "[Desc: " + CardDescription + "]\n" + 
+        "[Range: " + AttackRange + "]\n" + "[DMG: " + AttackDamage + "]\n" + "[KB: " + AttackKnockback+ "]\n" + 
+        "[AtkType: " + AttackType + "]\n";
+    }
     public void activate()
     {
-        IsFlipped = true;
         activator.run(this);
     }
 }
