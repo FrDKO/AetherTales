@@ -5,42 +5,30 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     Card card;
-    Text TypeText;
-    Text nameText;
-    Text DescriptionText;
-    Text RangeText;
-    Text CostText;
-    Image artSprite;
-    Text DamageText;
-    Text KnockbackText;
-    Text AttackTypeText;
-    Image UsedBySprite;
-    void Start()
-    {
-        nameText = transform.Find("Name").GetComponent<Text>();
-        DescriptionText = transform.Find("Description").GetComponent<Text>();
-        TypeText = transform.Find("Type").GetComponent<Text>();
-        RangeText = transform.Find("Range").GetComponent<Text>();
-        CostText = transform.Find("Cost").GetComponent<Text>();
-        artSprite = transform.Find("Art").GetComponent<Image>();
-        DamageText = transform.Find("Damage").GetComponent<Text>();
-        KnockbackText = transform.Find("Knockback").GetComponent<Text>();
-        AttackTypeText = transform.Find("Type").GetComponent<Text>();
-        UsedBySprite = transform.Find("Character").GetComponent<Image>();
-    }
+    string type;
+    public  Text subTypeText;
+    public Text nameText;
+    public Text DescriptionText;
+    public Text RangeText;
+    public Text CostText;
+    public Image artSprite;
+    public Text DamageText;
+    public Text KnockbackText;
+    public Image UsedBySprite;
+
     void Update()
     {
+        this.type = card.CardType;
         nameText.text = card.CardName;
         DescriptionText.text = card.CardDescription;
-        TypeText.text = card.CardType;
         CostText.text = card.Cost.ToString().Length == 2? card.Cost.ToString() : "0"+card.Cost.ToString();
-        UsedBySprite.sprite = card.usedBy;
-        artSprite.sprite = card.artwork;
-        if(TypeText.text.Equals("Attack"))
+        //UsedBySprite.sprite = card.usedBy;
+        //artSprite.sprite = card.artwork;
+        if(type.Equals("Attack"))
         {
-        DamageText.text = card.AttackDamage.ToString();
+        DamageText.text = card.AttackDamage.ToString() + "%";
         KnockbackText.text = card.AttackKnockback.ToString();
-        AttackTypeText.text = card.AttackType;
+        //AttackTypeText.text = card.AttackType;
         RangeText.text = card.AttackRange.ToString();
         }
         else
