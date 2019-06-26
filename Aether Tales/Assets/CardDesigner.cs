@@ -6,9 +6,15 @@ public class CardDesigner : MonoBehaviour
 {
 
     Card card;
+    public Sprite[] Templates;
+    public Sprite[] Art;
+    public Sprite[] Backgrounds;
+    public Sprite[] UsedBySprites;
     public void Start()
     {
          card = (Card)ScriptableObject.CreateInstance("Card");
+         card.CardType = "Attack";
+         modelCard.GetComponent<CardDisplay>().setCard(card);
     }
     public GameObject modelCard;
     // Update is called once per frame
@@ -22,6 +28,9 @@ public class CardDesigner : MonoBehaviour
     public void UpdateType(Text dropdownText)
     { 
         card.CardType = dropdownText.text;
+        foreach(Sprite sprite in Templates)
+        if(card.CardType.Equals(sprite.name.Replace(" Template","")))
+            modelCard.GetComponent<Image>().sprite=sprite;
         UpdateModel();
     }
     public void UpdateDescription(Text DescriptionText)
@@ -65,6 +74,7 @@ public class CardDesigner : MonoBehaviour
     
     public void UpdateModel()
     {
+        Debug.Log(card.showCard());
         modelCard.GetComponent<CardDisplay>().setCard(card);
     }
 
