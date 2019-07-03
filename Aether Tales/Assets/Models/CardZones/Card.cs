@@ -8,24 +8,25 @@ public class Card: ScriptableObject
     public  string CardName;
     public string CardType;
     public string CardDescription;
-    public int AttackRange;
-    public int AttackDamage;
-    public int AttackKnockback;
-    public string AttackType;
-    public string Effect;
+    public int CardAttackRange;
+    public int CardAttackDamage;
+    public int CardAttackKnockback;
+    public string CharacterUsed;
+    public string CardSubType;
+
+    public string CardHazardRange;
+    public string  Effect;
     public string Trigger;
     public string Location;
-    public int Cost;
- 
-    public Sprite artwork;
-    public Sprite usedBy;
+    public int CardCost;
+    public Sprite CardImage;
     public bool IsFlipped = false;
 
     public string showCard()
     {
-        return "[Name: " + CardName + "]\n"+ "[Cost: " + Cost + "]\n"+"[Type: " + CardType + "]\n" + "[Desc: " + CardDescription + "]\n" + 
-        "[Range: " + AttackRange + "]\n" + "[DMG: " + AttackDamage + "]\n" + "[KB: " + AttackKnockback+ "]\n" + 
-        "[AtkType: " + AttackType + "]\n";
+        return "[Name: " + CardName + "]\n"+ "[Cost: " + CardCost + "]\n"+"[Type: " + CardType + "]\n" + "[Desc: " + CardDescription + "]\n" + 
+        "[Range: " + CardAttackRange + "]\n" + "[DMG: " + CardAttackDamage + "]\n" + "[KB: " + CardAttackKnockback+ "]\n" + 
+        "[AtkType: " + CardSubType + "]\n"+ "[Character: " + CharacterUsed + "]\n" + "[HazardRange: " + CardHazardRange + "]\n";
     }
     public void activate()
     {

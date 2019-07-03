@@ -5,79 +5,68 @@ using UnityEngine.UI;
 public class CardDesigner : MonoBehaviour
 {
 
+    public CardDisplay cardModel;
     Card card;
-    public Sprite[] Templates;
-    public Sprite[] Art;
-    public Sprite[] Backgrounds;
-    public Sprite[] UsedBySprites;
+   
     public void Start()
     {
          card = (Card)ScriptableObject.CreateInstance("Card");
-         card.CardType = "Attack";
-         modelCard.GetComponent<CardDisplay>().setCard(card);
     }
-    public GameObject modelCard;
-    // Update is called once per frame
 
     public void UpdateName(Text nameText)
     {
-        
         card.CardName = nameText.text;
-        UpdateModel();
+        cardModel.setCardName(nameText.text);
     }
     public void UpdateType(Text dropdownText)
     { 
         card.CardType = dropdownText.text;
-        foreach(Sprite sprite in Templates)
-        if(card.CardType.Equals(sprite.name.Replace(" Template","")))
-            modelCard.GetComponent<Image>().sprite=sprite;
-        UpdateModel();
+        cardModel.setCardtype(dropdownText.text);
     }
     public void UpdateDescription(Text DescriptionText)
     {
         card.CardDescription = DescriptionText.text;
-        UpdateModel();
+        cardModel.setDescriptionText(DescriptionText.text);
     }
     public void UpdateCost(Slider slider)
     {
-        card.Cost = (int)slider.GetComponent<Slider>().value;
-        UpdateModel();
+        card.CardCost = (int)slider.GetComponent<Slider>().value;
+        cardModel.setCostSprite(card.CardCost.ToString());
     }
 
-    public void UpdateUseBy(Image image)
+    //Take this selection as Text and parse it so it can be used that way
+    public void UpdateUseBy(Text dropdownText)
     {
-        card.usedBy = image.sprite;
-        UpdateModel();
+       card.CharacterUsed = dropdownText.text;
+       cardModel.setUsedBySprite(dropdownText.text);
     }
 
-    public void UpdateAttackType(Text attackText)
+    public void UpdateSubType(Text subTypeText)
     {
-        card.AttackType = attackText.text;
-        UpdateModel();
+        card.CardSubType = subTypeText.text;
+        cardModel.setSubType(subTypeText.text);
     }
     public void UpdateDamage(Slider slider)
     {
-        card.AttackDamage =  (int)slider.GetComponent<Slider>().value;
-        UpdateModel();
+        card.CardAttackDamage =  (int)slider.GetComponent<Slider>().value;
+        cardModel.setDamageSprite(card.CardAttackDamage.ToString());
     }
     public void UpdateKnockback(Slider slider)
     {
-        card.AttackKnockback =  (int)slider.GetComponent<Slider>().value;
-        UpdateModel();
+        card.CardAttackKnockback =  (int)slider.GetComponent<Slider>().value;
+        cardModel.setKnockbackSprite(card.CardAttackKnockback.ToString());
     }
     
     public void UpdateRange(Slider slider)
     {
-        card.AttackRange =  (int)slider.GetComponent<Slider>().value;
-        UpdateModel();
+        card.CardAttackRange =  (int)slider.GetComponent<Slider>().value;
+        cardModel.setRangeSprite(card.CardAttackRange.ToString());
     }
-    
-    public void UpdateModel()
+    public void UpdateHazardRange(Text hazardRange)
     {
-        Debug.Log(card.showCard());
-        modelCard.GetComponent<CardDisplay>().setCard(card);
+        card.CardHazardRange = hazardRange.text;
+        cardModel.setHazardRangeSprite(hazardRange.text);
     }
-
     void SaveFinalCard()
     {
 
