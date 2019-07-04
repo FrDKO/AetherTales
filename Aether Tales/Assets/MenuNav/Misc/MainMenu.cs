@@ -9,6 +9,7 @@ string currentMenuName;
 public void Start()
 {
     openMenu(gameObject.name.Replace("Menu",""));
+    
 }
    public void openSection(Dropdown dropdown)
    {

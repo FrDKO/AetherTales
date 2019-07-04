@@ -5,11 +5,14 @@ using UnityEngine.UI;
 public class DropdownMenu : MonoBehaviour
 {
     Dropdown dropdown;
-    public string DefaultText;
+    public List<string> DefaultOptions;
+
     // Start is called before the first frame update
     void Start()
     {
         dropdown = GetComponent<Dropdown>();
-        dropdown.captionText.text = DefaultText;
+        dropdown.AddOptions(DefaultOptions);
+        dropdown.captionText.text = DefaultOptions[0];
+        dropdown.value = 20;
     }
 }

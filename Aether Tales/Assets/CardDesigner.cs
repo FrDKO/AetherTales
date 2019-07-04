@@ -13,20 +13,20 @@ public class CardDesigner : MonoBehaviour
          card = (Card)ScriptableObject.CreateInstance("Card");
     }
 
-    public void UpdateName(Text nameText)
+    public void UpdateName(InputField inputField)
     {
-        card.CardName = nameText.text;
-        cardModel.setCardName(nameText.text);
+        card.CardName = inputField.text;
+        cardModel.setCardName(inputField.text);
     }
     public void UpdateType(Text dropdownText)
     { 
         card.CardType = dropdownText.text;
         cardModel.setCardtype(dropdownText.text);
     }
-    public void UpdateDescription(Text DescriptionText)
+    public void UpdateDescription(InputField inputField)
     {
-        card.CardDescription = DescriptionText.text;
-        cardModel.setDescriptionText(DescriptionText.text);
+        card.CardDescription = inputField.text;
+        cardModel.setDescriptionText(inputField.text);
     }
     public void UpdateCost(Slider slider)
     {

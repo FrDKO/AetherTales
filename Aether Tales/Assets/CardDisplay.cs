@@ -18,13 +18,17 @@ public class CardDisplay : MonoBehaviour
     public SpriteImage KnockbackImageDigit;
     public SpriteImage UsedBySprite;
 
+    string Type;
     void Start()
     {
         CardTemplate = this.GetComponent<SpriteImage>();
+        setCardtype("Attack");
     }
-    public void setCardtype(string Type)
+    public void setCardtype(string type)
     {
-        CardTemplate.setSprite(Type.Replace(" Template", ""));
+        Type = type;
+        CardTemplate.setSprite(type);
+        setSubType("");
         Display();
     }
     public void setCardName(string newCardName) => nameText.text = newCardName;
@@ -54,7 +58,7 @@ public class CardDisplay : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cost is " + Cost + " Which is more than 10");
+        Debug.Log("Cost is " + Cost + " Which is more than 10");
             if(Cost[1]=='0')
                 CostImageDigit2.setSprite(Cost[1].ToString()+ " Full");
                 else
@@ -85,27 +89,30 @@ public class CardDisplay : MonoBehaviour
 
     public void Display()
     {
-        //Delete all Attack objects
-        if(!CardTemplate.name.Equals("Attack"))
+        switch(Type)
         {
-            
-            RangeImage.GetComponent<SpriteImage>().Deactivate();
-            KnockbackImageDigit.GetComponent<SpriteImage>().Deactivate();
-            DamageImageDigit1.GetComponent<SpriteImage>().Deactivate();
-            DamageImageDigit2.GetComponent<SpriteImage>().Deactivate();
+            case("Attack"):renderElse(); renderAttack(); break;
+            case("Hazard"):renderElse(); renderHazard(); break;
+            default: renderElse(); break;
         }
-        else if(CardTemplate.name.Equals("Attack"))
-        {
-            RangeImage.GetComponent<SpriteImage>().Activate();
-            KnockbackImageDigit.GetComponent<SpriteImage>().Activate();
-            DamageImageDigit1.GetComponent<SpriteImage>().Activate();
-            DamageImageDigit2.GetComponent<SpriteImage>().Activate();
-        }
-
-        //Delete all Hazard Objects
-        if(!CardTemplate.name.Equals("Hazard"))
-            HazardRangeImage.GetComponent<SpriteImage>().Deactivate();
-        else if(CardTemplate.name.Equals("Hazard"))
-            HazardRangeImage.GetComponent<SpriteImage>().Activate();
+    }
+    public void renderAttack()
+    {
+        RangeImage.Activate();
+        DamageImageDigit1.Activate();
+        DamageImageDigit2.Activate();
+        KnockbackImageDigit.Activate();
+    }
+    public void renderHazard()
+    {
+        HazardRangeImage.Activate();
+    }
+    public void renderElse()
+    {
+        RangeImage.Deactivate();
+        DamageImageDigit1.Deactivate();
+        DamageImageDigit2.Deactivate();
+        KnockbackImageDigit.Deactivate();
+        HazardRangeImage.Deactivate();
     }
 }
