@@ -6,8 +6,13 @@ TagManager:
   tags:
   - CardCreator
   - Mod
-  - AttackBuilder
   - Attack
+  - Rune
+  - Counter
+  - Stage
+  - Movement
+  - Hazard
+  - Character
   layers:
   - Default
   - TransparentFX

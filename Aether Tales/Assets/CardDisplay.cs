@@ -17,7 +17,7 @@ public class CardDisplay : MonoBehaviour
     public SpriteImage DamageImageDigit2;
     public SpriteImage KnockbackImageDigit;
     public SpriteImage UsedBySprite;
-
+    public SpriteImage Background;
     string Type;
     void Start()
     {
@@ -36,6 +36,10 @@ public class CardDisplay : MonoBehaviour
     public void setDescriptionText(string newDescription)=> DescriptionText.text = newDescription;
     public void setRangeSprite(string newRangeSprite)=> RangeImage.setSprite(newRangeSprite);
 
+    public void setBackground(Text backgroundName)
+    {
+        Background.setSprite(backgroundName.text);
+    }
     public void setHazardRangeSprite(string spriteRange)
     {
         HazardRangeImage.setSprite(spriteRange);

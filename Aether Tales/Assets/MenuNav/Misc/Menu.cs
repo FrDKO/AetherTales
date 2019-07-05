@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MainMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
 
 string currentMenuName;
