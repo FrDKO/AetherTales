@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b736a0f36a79c9c4c8ecea905a9409cd, type: 3}
+  m_Name: Yolo Jump
+  m_EditorClassIdentifier: 
+  CardName: Yolo Jump
+  CardType: Rune
+  CardDescription: 'Search your deck for one "jump" card, afterwards; send the top
+    5 cards of your deck to the abyss. '
+  CardAttackRange: 0
+  CardAttackDamage: 0
+  CardAttackKnockback: 0
+  CharacterUsed: Wrastor
+  CardSubType: Normal
+  CardHazardRange: Hazard Range
+  Effect: 
+  Trigger: 
+  Location: 
+  CardCost: 3
+  CardImage: {fileID: 0}
+  IsFlipped: 0

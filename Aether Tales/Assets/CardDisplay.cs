@@ -32,7 +32,7 @@ public class CardDisplay : MonoBehaviour
         Display();
     }
     public void setCardName(string newCardName) => nameText.text = newCardName;
-    public void setSubType(string newSubType)=> subTypeText.text = newSubType;
+    public void setSubType(string newSubType){if(!newSubType.Equals("Normal"))subTypeText.text = newSubType;}
     public void setDescriptionText(string newDescription)=> DescriptionText.text = newDescription;
     public void setRangeSprite(string newRangeSprite)=> RangeImage.setSprite(newRangeSprite);
 
@@ -47,7 +47,7 @@ public class CardDisplay : MonoBehaviour
     }
     public void setCostSprite(string Cost)
     {
-        Debug.Log(Cost);
+        
         if(Cost.Length<2)
         {
             Cost= "0"+Cost;
@@ -56,13 +56,13 @@ public class CardDisplay : MonoBehaviour
         CostImageDigit1.setSprite(Cost[0].ToString());
         if(int.Parse(Cost)<10)
         {
-            Debug.Log("Cost is " + Cost + " Which is less than 10");
+  
            if(Cost[1] == '0') CostImageDigit2.setSprite(Cost[1].ToString() +  " Empty"); 
            else CostImageDigit2.setSprite(Cost[1].ToString());
         }
         else
         {
-        Debug.Log("Cost is " + Cost + " Which is more than 10");
+      
             if(Cost[1]=='0')
                 CostImageDigit2.setSprite(Cost[1].ToString()+ " Full");
                 else
@@ -106,10 +106,12 @@ public class CardDisplay : MonoBehaviour
         DamageImageDigit1.Activate();
         DamageImageDigit2.Activate();
         KnockbackImageDigit.Activate();
+        subTypeText.rectTransform.anchoredPosition = new Vector3(11,-46,0);
     }
     public void renderHazard()
     {
         HazardRangeImage.Activate();
+        subTypeText.rectTransform.anchoredPosition = new Vector3(11,-46,0);
     }
     public void renderElse()
     {
@@ -118,5 +120,6 @@ public class CardDisplay : MonoBehaviour
         DamageImageDigit2.Deactivate();
         KnockbackImageDigit.Deactivate();
         HazardRangeImage.Deactivate();
+        subTypeText.rectTransform.anchoredPosition= new Vector3(-27,-46,0);
     }
 }

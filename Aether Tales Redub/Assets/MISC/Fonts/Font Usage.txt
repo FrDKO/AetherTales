@@ -1,0 +1,6 @@
+Card Title - Elepixelbig
+Description Title - Elepixel3
+Description - Elepixel3
+Card Type - Elpixel3 exactly 200pt font
+
+All fonts MUST be in increments of 8

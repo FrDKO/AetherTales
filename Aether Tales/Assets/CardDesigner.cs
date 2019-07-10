@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+using System.IO;
 public class CardDesigner : MonoBehaviour
 {
 
@@ -67,8 +69,37 @@ public class CardDesigner : MonoBehaviour
         card.CardHazardRange = hazardRange.text;
         cardModel.setHazardRangeSprite(hazardRange.text);
     }
-    void SaveFinalCard()
+    public void saveCard()
     {
+        StartCoroutine(getScreenshot());
+        ScriptableObjectUtility SOU = new ScriptableObjectUtility();
+        SOU.CreateAsset<Card>(card);
+        
+    }
+    RectTransform rectT;
+    int width;
+    int height;
 
+    public IEnumerator getScreenshot()
+    {
+        yield return new WaitForEndOfFrame();
+        rectT = cardModel.gameObject.GetComponent<RectTransform>();
+        width = System.Convert.ToInt32(rectT.rect.width);
+        height = System.Convert.ToInt32(rectT.rect.height);
+
+        Vector2 temp = rectT.transform.position;
+        var startX = temp.x - width/2;
+        var startY = temp.y - height/2;
+        var tex = new Texture2D (width,height,TextureFormat.RGB24, false);
+        tex.ReadPixels(new Rect(startX,startY,width,height),0,0);
+        tex.Apply();
+
+        Sprite cardSprite = Sprite.Create(tex,new Rect(0,0,width,height),new Vector2(0,0));
+        card.CardImage = cardSprite;
+        
+        var bytes = tex.EncodeToPNG();
+        Destroy(tex);
+
+        File.WriteAllBytes(Application.dataPath + card.CardName+".png",bytes);
     }
 }

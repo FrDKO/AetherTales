@@ -1,0 +1,4 @@
+TODO: 
+
+User needs to be able to place cards
+into the Stage through User object. 
