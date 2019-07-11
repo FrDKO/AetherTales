@@ -113,10 +113,10 @@ public class CardDesigner : MonoBehaviour
         width = System.Convert.ToInt32(rectT.rect.width);
         height = System.Convert.ToInt32(rectT.rect.height);
 
-        Vector2 temp = rectT.transform.position;
-        var startX = temp.x - width/2;
+        Vector2 temp = rectT.transform.position; //Getting the center of position
+        var startX = temp.x - width/2; //Measuring height and width of the object 
         var startY = temp.y - height/2;
-        var tex = new Texture2D (width,height,TextureFormat.RGB24, false);
+        var tex = new Texture2D (width,height,TextureFormat.RGB24, false); //Creating a texture based on the above findings. 
         tex.ReadPixels(new Rect(startX,startY,width,height),0,0);
         tex.Apply();
 
@@ -126,6 +126,6 @@ public class CardDesigner : MonoBehaviour
         var bytes = tex.EncodeToPNG();
         Destroy(tex);
 
-        File.WriteAllBytes(Application.dataPath + card.CardName+".png",bytes);
+        File.WriteAllBytes(Application.dataPath + "/CardSprites/" +card.CardName+".png",bytes);
     }
 }
