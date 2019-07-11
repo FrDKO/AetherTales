@@ -10,6 +10,7 @@ public class CardDesigner : MonoBehaviour
     public CardDisplay cardModel;
     Card card;
    
+   //Card cannot have the attributes "unlisted"
     public void Start()
     {
          card = (Card)ScriptableObject.CreateInstance("Card");
@@ -25,6 +26,7 @@ public class CardDesigner : MonoBehaviour
         card.CardType = dropdownText.text;
         cardModel.setCardtype(dropdownText.text);
         Debug.Log("Current type is: " + dropdownText.text);
+        makeCardValid(card.CardType);
     }
     public void UpdateDescription(InputField inputField)
     {
@@ -78,7 +80,27 @@ public class CardDesigner : MonoBehaviour
         StartCoroutine(getScreenshot());
         ScriptableObjectUtility SOU = new ScriptableObjectUtility();
         SOU.CreateAsset<Card>(card);
-        
+        card = (Card)ScriptableObject.CreateInstance("Card");
+    }
+    public void makeCardValid(string type)
+    {
+        if(type.Equals("Attack"))
+        {
+            card.CardHazardRange = "";
+        }
+        else if(type.Equals("Hazard"))
+        {
+            card.CardAttackDamage = 0;
+            card.CardAttackKnockback = 0;
+            card.CardAttackRange = 0;
+        }
+        else
+        {
+            card.CardAttackDamage = 0;
+            card.CardAttackKnockback = 0;
+            card.CardAttackRange = 0; 
+            card.CardHazardRange = "";
+        }
     }
     RectTransform rectT;
     int width;

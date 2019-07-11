@@ -6,6 +6,7 @@ public class DropdownMenu : MonoBehaviour
 {
     Dropdown dropdown;
     public List<string> DefaultOptions;
+    public string defaultOption;
 
     // Start is called before the first frame update
     void Start()
@@ -13,6 +14,7 @@ public class DropdownMenu : MonoBehaviour
         dropdown = GetComponent<Dropdown>();
         dropdown.AddOptions(DefaultOptions);
         dropdown.captionText.text = DefaultOptions[0];
+        defaultOption = DefaultOptions[0];
         dropdown.value = 20;
     }
 }
