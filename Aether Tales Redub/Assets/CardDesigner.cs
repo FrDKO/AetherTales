@@ -46,8 +46,11 @@ public class CardDesigner : MonoBehaviour
 
     public void UpdateSubType(Text subTypeText)
     {
+        if(!subTypeText.text.Contains("Type"))
+        {
         card.CardSubType = subTypeText.text;
         cardModel.setSubType(subTypeText.text);
+        }
     }
     public void UpdateDamage(Slider slider)
     {

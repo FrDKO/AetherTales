@@ -22,7 +22,7 @@ public class CardDisplay : MonoBehaviour
     void Start()
     {
         CardTemplate = this.GetComponent<SpriteImage>();
-        setCardtype("Attack");
+        CardTemplate.setSprite("Attack");
     }
     public void setCardtype(string type)
     {

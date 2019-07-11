@@ -15,9 +15,11 @@ public void Start()
    {
 
        string sectionName = dropdown.options[dropdown.value].text;
-
+    if(!sectionName.Equals("Card Type"))
+    {
        foreach(GameObject x in getChildren())
        {
+       
            if(x.CompareTag(sectionName)) //If the menu name matches the tag
            {
                x.SetActive(true);
@@ -28,9 +30,12 @@ public void Start()
                x.GetComponent<MenuComponent>().toRest();
            }
        }
+    }
    }
    public void openMenu(string menuName)
    {
+       try
+       {
        currentMenuName = menuName;
        foreach(GameObject x in getChildren())
        {
@@ -41,6 +46,11 @@ public void Start()
            }
            else
                x.GetComponent<MenuComponent>().toRest();
+       }
+       }
+       catch
+       {
+           //Do nothing
        }
    }
   
