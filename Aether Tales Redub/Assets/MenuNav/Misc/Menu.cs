@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
-
+public string baseTag;
 string currentMenuName;
 public void Start()
 {
-    openMenu(gameObject.name.Replace("Menu",""));
-    
+    openMenu(baseTag);
+}
+void OnEnable()
+{
+    openMenu(baseTag);
+    if(GetComponent<Reset>())
+    GetComponent<Reset>().resetAll();
 }
    public void openSection(Dropdown dropdown)
    {

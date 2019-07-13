@@ -117,8 +117,9 @@ public class CardDesigner : MonoBehaviour
         var startX = temp.x - width/2; //Measuring height and width of the object 
         var startY = temp.y - height/2;
         var tex = new Texture2D (width,height,TextureFormat.RGB24, false); //Creating a texture based on the above findings. 
-        tex.ReadPixels(new Rect(startX,startY,width,height),0,0);
-        tex.Apply();
+        
+        // tex.ReadPixels(new Rect(startX,startY,width-5,height-5),0,0);
+        // tex.Apply();
 
         Sprite cardSprite = Sprite.Create(tex,new Rect(0,0,width,height),new Vector2(0,0));
         card.CardImage = cardSprite;

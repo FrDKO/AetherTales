@@ -2131,8 +2131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc132cb15738414eb049c955ef1d5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RestPosition: {x: -1000, y: -1000}
-  ActivePosition: {x: 270, y: -144}
+  RestPosition: {x: 1000, y: -145}
+  ActivePosition: {x: 270, y: -145}
 --- !u!114 &213108907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3027,7 +3027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc132cb15738414eb049c955ef1d5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RestPosition: {x: -1000, y: 100}
+  RestPosition: {x: 1000, y: 145}
   ActivePosition: {x: 270, y: 145}
 --- !u!114 &348661437
 MonoBehaviour:
@@ -3670,7 +3670,7 @@ GameObject:
   - component: {fileID: 387782213}
   - component: {fileID: 387782212}
   m_Layer: 5
-  m_Name: CardCreatorCardNameInpu
+  m_Name: CardCreatorCardNameInput
   m_TagString: CardCreator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6668,6 +6668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed2a2ccf627ee045bddc2f2b54741c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseTag: CardCreator
 --- !u!114 &712634034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8670,17 +8671,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1315763575}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 712634034}
-        m_MethodName: resetAll
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11816,6 +11806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed2a2ccf627ee045bddc2f2b54741c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseTag: Mod
 --- !u!1 &1247858642
 GameObject:
   m_ObjectHideFlags: 0
