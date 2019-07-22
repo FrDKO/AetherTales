@@ -10,11 +10,10 @@ public void Start()
 {
     openMenu(baseTag);
 }
+
 void OnEnable()
 {
     openMenu(baseTag);
-    if(GetComponent<Reset>())
-    GetComponent<Reset>().resetAll();
 }
    public void openSection(Dropdown dropdown)
    {

@@ -20,6 +20,7 @@ public class CardDesigner : MonoBehaviour
     {
         card.CardName = inputField.text;
         cardModel.setCardName(inputField.text);
+       
     }
     public void UpdateType(Text dropdownText)
     { 
@@ -37,6 +38,7 @@ public class CardDesigner : MonoBehaviour
     {
         card.CardCost = (int)slider.GetComponent<Slider>().value;
         cardModel.setCostSprite(card.CardCost.ToString());
+   
     }
 
     //Take this selection as Text and parse it so it can be used that way
@@ -107,22 +109,21 @@ public class CardDesigner : MonoBehaviour
     int height;
 
     public IEnumerator getScreenshot()
-    {
+    { 
         yield return new WaitForEndOfFrame();
         rectT = cardModel.gameObject.GetComponent<RectTransform>();
         width = System.Convert.ToInt32(rectT.rect.width);
         height = System.Convert.ToInt32(rectT.rect.height);
 
         Vector2 temp = rectT.transform.position; //Getting the center of position
-        var startX = temp.x - width/2; //Measuring height and width of the object 
-        var startY = temp.y - height/2;
+        var startX = temp.x - width/2f; //Finding where to measure to
+        var startY = temp.y - height/2f;
         var tex = new Texture2D (width,height,TextureFormat.RGB24, false); //Creating a texture based on the above findings. 
         
-        // tex.ReadPixels(new Rect(startX,startY,width-5,height-5),0,0);
-        // tex.Apply();
+        tex.ReadPixels(new Rect(startX,startY-12.5f,width,height),0,0);
+        tex.Apply();
 
-        Sprite cardSprite = Sprite.Create(tex,new Rect(0,0,width,height),new Vector2(0,0));
-        card.CardImage = cardSprite;
+        
         
         var bytes = tex.EncodeToPNG();
         Destroy(tex);

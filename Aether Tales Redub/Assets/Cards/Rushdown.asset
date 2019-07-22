@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b736a0f36a79c9c4c8ecea905a9409cd, type: 3}
+  m_Name: Rushdown
+  m_EditorClassIdentifier: 
+  CardName: Rushdown
+  CardType: Attack
+  CardDescription: Your next card has a cost of 2.
+  CardAttackRange: 0
+  CardAttackDamage: 2
+  CardAttackKnockback: 0
+  CharacterUsed: All
+  CardSubType: Ground Attack
+  CardHazardRange: 
+  Effect: 
+  Trigger: 
+  Location: 
+  CardCost: 4
+  CardImage: {fileID: 0}
+  IsFlipped: 0
