@@ -1,0 +1,9 @@
+Subtypes
+~~~~~~~~~~
+
+Sample:
+Type
+Subtype
+Usage
+
+~~~~~~~~~~
