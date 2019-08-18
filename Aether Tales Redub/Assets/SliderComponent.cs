@@ -11,8 +11,13 @@ public class SliderComponent : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    void onEnable()
+    public void OnEnable()
     {
+        slider.value = 0;
+    }
+    public void reset()
+    {
+
         slider.value = 0;
         for(int i = 0; i< slider.onValueChanged.GetPersistentEventCount();i++)
         {

@@ -1,18 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class InputFieldComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public void OnEnable()
     {
-        
+        GetComponent<InputField>().text = "";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

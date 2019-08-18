@@ -6,6 +6,8 @@ public class Menu : MonoBehaviour
 {
 public string baseTag;
 string currentMenuName;
+
+List<string> sectionList = new List<string>();
 public void Start()
 {
     openMenu(baseTag);
@@ -23,7 +25,6 @@ void OnEnable()
     {
        foreach(GameObject x in getChildren())
        {
-       
            if(x.CompareTag(sectionName)) //If the menu name matches the tag
            {
                x.SetActive(true);
@@ -57,8 +58,30 @@ void OnEnable()
            //Do nothing
        }
    }
-  
+   public void openSection(string sectionName)
+   {
+       foreach(GameObject x in getChildren())
+       {
+            if(x.CompareTag(sectionName)) //If the menu name matches the tag
+           {
+               x.SetActive(true);
+               x.GetComponent<MenuComponent>().toActive();
+           }
+           else if(!x.CompareTag(sectionName) && !x.CompareTag(currentMenuName))
+           {
+               x.GetComponent<MenuComponent>().toRest();
+           }
 
+       }
+   }
+   public void addToList(string item)
+   {
+       sectionList.Add(item);
+   }
+   public void resetList()
+   {
+       sectionList.Clear();
+   }
     public List<GameObject> getChildren()
    {
 

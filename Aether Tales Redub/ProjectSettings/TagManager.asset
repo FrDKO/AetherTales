@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Counter
+  - CardCreator
+  - Character
+  - Rune
+  - Mod
+  - Stage
+  - Hazard
+  - Attack
+  - Movement
+  - TestMatch
+  - CardType
+  - SetEffects
+  - Design
   layers:
   - Default
   - TransparentFX

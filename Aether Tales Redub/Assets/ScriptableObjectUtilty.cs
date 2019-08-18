@@ -25,9 +25,8 @@ public class ScriptableObjectUtility
 		string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (path + "/Cards/" + asset.CardName + ".asset");
  
 		AssetDatabase.CreateAsset (asset, assetPathAndName);
- 
 		AssetDatabase.SaveAssets ();
-        	AssetDatabase.Refresh();
+        AssetDatabase.Refresh();
 		EditorUtility.FocusProjectWindow ();
 		Selection.activeObject = asset;
 	}

@@ -14,7 +14,7 @@ public class Hand:CardZone
     public Card playCard(Card card)
     {
         getCard(card);
-        card.activate();
+        //card.activate();
         return card;
     }
 

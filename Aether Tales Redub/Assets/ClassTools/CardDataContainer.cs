@@ -4,47 +4,69 @@ using UnityEngine;
 using UnityEngine.UI;
 public  class CardDataContainer: MonoBehaviour
 {
-    private string cardName;
-    private string cardDescription;
-    private string cardType;
-    private int cardCost;
-    private string attackType;   
-    private int attackDamage;
-    private int attackKnockback;
-    private int attackRange;
-    private string validCharacters;
+    Card card;
+    ScriptableObjectUtility ScriptableObjectUtility = new ScriptableObjectUtility();
+    public Text cardName;
+    public Text cardDesc;
+    public Text cardType;
+    public Text cardCost;
+    public Text cardSubType;
+    public Text cardAttackDamage;
+    public Text cardAttackKnockback;
+    public Text cardAttackRange;
+    public Text cardHazardRange;
+    public void OnEnable()
+    {
+        card = (Card)ScriptableObject.CreateInstance("Card");
+    }
+    public Card getCard()
+    {
+        return this.card;
+    }
+    public void Update()
+    {
+        card.CardName = cardName.text;
+        card.CardDescription = cardDesc.text;
+        card.CardType = cardType.text;
+        card.CardCost=int.Parse(cardCost.text);
+        card.CardSubType = cardSubType.text;
+        card.CardAttackDamage = int.Parse(cardAttackDamage.text);
+        card.CardAttackKnockback = int.Parse(cardAttackKnockback.text);
+        card.CardAttackRange = int.Parse(cardAttackRange.text);
+        card.CardHazardRange = cardHazardRange.text;
 
-    public void setCardName(GameObject TextInput)
-    {
-        cardName = TextInput.GetComponent<Text>().text;
+        
     }
-    public void setCardDescription(GameObject TextInput)
+
+    public void finalizeCard()
     {
-        cardDescription = TextInput.GetComponent<Text>().text;
+        Validate();
+        ScriptableObjectUtility.CreateAsset<Card>(card);
     }
-    public void setCardType(GameObject Dropdown)
+    private void Validate()
     {
-        cardDescription = Dropdown.GetComponent<Dropdown>().options[Dropdown.GetComponent<Dropdown>().value].ToString();
+        if(card.CardType.Equals("Attack"))
+        {
+            card.CardHazardRange = "";
+        }
+        if(card.CardType.Equals("Hazard"))
+        {
+            card.CardAttackDamage= 0;
+            card.CardAttackKnockback= 0;
+            card.CardAttackRange = 0;
+        }
+        if(card.CardType.Equals("Character"))
+        {
+            
+        }
+        else
+        {
+                card.CardHazardRange = "";
+                card.CardAttackDamage = 0;
+                card.CardAttackKnockback = 0;
+                card.CardAttackRange=0;
+        }
     }
-    public void setCardCost(GameObject Slider)
-    {
-        cardCost = (int)Slider.GetComponent<Slider>().value;
-    }
-    public void setAttackType(GameObject Dropdown)
-    {
-        attackType = Dropdown.GetComponent<Dropdown>().options[Dropdown.GetComponent<Dropdown>().value].ToString();
-    }
-    public void setAttackDamage(GameObject Slider)
-    {
-        attackDamage = (int)Slider.GetComponent<Slider>().value;
-    }
-    public void setAttackKnockback(GameObject Slider)
-    {
-        attackKnockback = (int)Slider.GetComponent<Slider>().value;
-    }
-    public void setAttackRange(GameObject Slider)
-    {
-        attackRange = (int)Slider.GetComponent<Slider>().value;
-    }
+
 }
 

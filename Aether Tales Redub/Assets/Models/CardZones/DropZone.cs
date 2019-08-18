@@ -38,7 +38,6 @@ public class DropZone: CardZone
         int totalCost = 0;
         foreach(Card card in getCardList())
         {
-            if(card.IsFlipped)
             totalCost += card.CardCost;
         }
         if(totalCost > costLimit)

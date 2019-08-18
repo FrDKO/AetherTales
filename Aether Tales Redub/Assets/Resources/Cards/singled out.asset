@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b736a0f36a79c9c4c8ecea905a9409cd, type: 3}
+  m_Name: singled out
+  m_EditorClassIdentifier: 
+  cardName: singled out
+  cardType: Counter
+  cardDescription: 'If this card is flipped by your opponents rival phase, you can
+    replace this card with a card in your hand. '
+  cardAttackRange: 0
+  cardAttackDamage: 0
+  cardAttackKnockback: 0
+  characterUsed: 
+  cardSubType: Stage Counter
+  cardHazardRange: 
+  effect: 
+  trigger: 
+  location: 
+  cardCost: 7
+  cardImage: {fileID: 0}
+  isFlipped: 0

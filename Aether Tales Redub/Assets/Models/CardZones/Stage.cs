@@ -19,14 +19,12 @@ public class Stage: CardZone
     {
         int placement = getCardList().IndexOf(oldCard);
         Card tempCard = getCard(oldCard);
-        newCard.IsFlipped = false;
         getCardList().Insert(placement,newCard);
         return tempCard;
     }
 
     public Card flipCard (int placement)
     {
-        getCardList()[placement].IsFlipped=true;
         return getCardList()[placement];
     }
     
