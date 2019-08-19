@@ -20,6 +20,7 @@ public class TextFromInput : MonoBehaviour
 
     public void setText(Text text)
     {
+        if(!text.text.Equals("Normal") && !text.text.Contains("Type"))
         cardText.text = text.text;
     }
 }

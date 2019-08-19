@@ -7,6 +7,7 @@ using UnityEditor;
 public class ArtUpload : MonoBehaviour
 {
     public Image cardArtImage;
+    public CardDataContainer cardDataContainer;
     Texture2D texture;
 
     byte[] fileContent;
@@ -21,6 +22,9 @@ public class ArtUpload : MonoBehaviour
             texture.LoadImage(fileContent,false);
             Sprite cardArt = Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f));
             cardArtImage.sprite = cardArt;
+            string name = cardDataContainer.getCard().cardName;
+            Debug.Log("Sprite is being saved.");
+            AssetDatabase.CreateAsset(cardArt,"Resources/CardArt/"+name+".png");
         }
    }
 

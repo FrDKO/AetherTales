@@ -34,7 +34,8 @@ public  class CardDataContainer: MonoBehaviour
         card.CardAttackKnockback = int.Parse(cardAttackKnockback.text);
         card.CardAttackRange = int.Parse(cardAttackRange.text);
         card.CardHazardRange = cardHazardRange.text;
-
+        if(card.CardSubType.Equals(""))
+            card.cardSubType = "Normal";
         
     }
 
