@@ -35,14 +35,27 @@ public  class CardDataContainer: MonoBehaviour
         card.CardAttackRange = int.Parse(cardAttackRange.text);
         card.CardHazardRange = cardHazardRange.text;
         if(card.CardSubType.Equals(""))
-            card.cardSubType = "Normal";
+        {
+            switch(card.cardType)
+            {
+                case("Attack"): card.cardSubType = "Ground Attack"; break;
+                default: card.cardSubType = "Normal"; break;
+            }
+        }
         
     }
 
     public void finalizeCard()
     {
         Validate();
-        ScriptableObjectUtility.CreateAsset<Card>(card);
+        try
+        {
+           ScriptableObjectUtility.CreateAsset<Card>(card); 
+        }
+        catch
+        {
+            Debug.Log(card.showCard());
+        }
     }
     private void Validate()
     {

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class MenuComponent : MonoBehaviour
 {
+    [Header("From what position do you want to fly in, and to where?")]
     public Vector2 RestPosition;
     public Vector2 ActivePosition;
 
     bool isComingIn = false;
+
+    [Header("How fast do you want it to fly in? (Default is .1)")]
+    public float flyInSpeed;
 
 
     public void Start()
@@ -18,23 +22,23 @@ public class MenuComponent : MonoBehaviour
     {
         if(isComingIn)
         {
-            this.transform.localPosition = Vector2.Lerp(this.transform.localPosition,ActivePosition,.06f);
+            if(flyInSpeed.Equals(0))
+            this.transform.localPosition = Vector2.Lerp(this.transform.localPosition,ActivePosition,.1f);
+            else
+            this.transform.localPosition = Vector2.Lerp(this.transform.localPosition,ActivePosition,flyInSpeed);
+            if(this.transform.localPosition.Equals(ActivePosition))
+            {
+                isComingIn = false;
+            }
         }
     }
     public void toActive()
     {
         this.transform.localPosition = RestPosition;
         isComingIn = true;
-        StartCoroutine(waitBeforeFullLoad());
     }
     public void toRest()
     {
        this.gameObject.SetActive(false);
-    }
-
-    public IEnumerator waitBeforeFullLoad()
-    {
-        yield return new WaitForSeconds(5);
-        isComingIn = false;
     }
 }

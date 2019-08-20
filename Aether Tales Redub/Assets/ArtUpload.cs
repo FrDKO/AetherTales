@@ -24,7 +24,10 @@ public class ArtUpload : MonoBehaviour
             cardArtImage.sprite = cardArt;
             string name = cardDataContainer.getCard().cardName;
             Debug.Log("Sprite is being saved.");
-            AssetDatabase.CreateAsset(cardArt,"Resources/CardArt/"+name+".png");
+            var bytes= texture.EncodeToPNG();
+            Destroy(texture);
+            File.WriteAllBytes(Application.dataPath + "/Resources/CardArt/" + name+".png",bytes);
+
         }
    }
 

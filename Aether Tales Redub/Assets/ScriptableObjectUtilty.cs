@@ -12,17 +12,9 @@ public class ScriptableObjectUtility
 	{
 		Card asset = c;
  
-		string path = AssetDatabase.GetAssetPath (Selection.activeObject);
-		if (path == "") 
-		{
-			path = "Assets";
-		} 
-		else if (Path.GetExtension (path) != "") 
-		{
-			path = path.Replace (Path.GetFileName (AssetDatabase.GetAssetPath (Selection.activeObject)), "");
-		}
+	
  
-		string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (path + "/Cards/" + asset.CardName + ".asset");
+		string assetPathAndName =   "Assets/Resources/Cards/" + asset.cardName + ".asset";
  
 		AssetDatabase.CreateAsset (asset, assetPathAndName);
 		AssetDatabase.SaveAssets ();

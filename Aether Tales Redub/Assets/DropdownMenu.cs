@@ -15,10 +15,14 @@ public class DropdownMenu : MonoBehaviour
         dropdown.options.Insert(0,new Dropdown.OptionData {text = InitialDropdownName});
         dropdown.captionText.text = InitialDropdownName;
     }
-    void onEnable()
+    void OnEnable()
     {
-        dropdown = GetComponent<Dropdown>();
         dropdown.options.Insert(0,new Dropdown.OptionData {text = InitialDropdownName});
+        dropdown.value = 0;
         dropdown.captionText.text = InitialDropdownName;
+    }
+    void OnDisable()
+    {
+        dropdown.options.RemoveAt(0);
     }
 }
