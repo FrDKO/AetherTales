@@ -25,6 +25,7 @@ public  class CardDataContainer: MonoBehaviour
     }
     public void Update()
     {
+        Debug.Log(card.showCard());
         card.CardName = cardName.text;
         card.CardDescription = cardDesc.text;
         card.CardType = cardType.text;
@@ -51,6 +52,7 @@ public  class CardDataContainer: MonoBehaviour
         try
         {
            ScriptableObjectUtility.CreateAsset<Card>(card); 
+           //StartCoroutine("WaitTimer()");
         }
         catch
         {
@@ -80,6 +82,10 @@ public  class CardDataContainer: MonoBehaviour
                 card.CardAttackKnockback = 0;
                 card.CardAttackRange=0;
         }
+    }
+    IEnumerator WaitTimer()
+    {
+        yield return new WaitForSeconds(5);
     }
 
 }

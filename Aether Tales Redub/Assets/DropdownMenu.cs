@@ -18,7 +18,10 @@ public class DropdownMenu : MonoBehaviour
     void OnEnable()
     {
         dropdown.options.Insert(0,new Dropdown.OptionData {text = InitialDropdownName});
+        
+        var Listeners = dropdown.onValueChanged;
         dropdown.value = 0;
+
         dropdown.captionText.text = InitialDropdownName;
     }
     void OnDisable()
