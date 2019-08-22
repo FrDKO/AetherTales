@@ -9,10 +9,19 @@ public class OptionMenu : MonoBehaviour
     [Header("Buttons")]
     public List<Button> buttonsForDisable = new List<Button>();
 
-    
     void OnEnable()
     {
         foreach(Button b in buttonsForDisable)
-            b.interactable = false;
+        {
+            b.gameObject.SetActive(false);
+        }
+        
     }
+    void OnDisable()
+    {
+        foreach(Button b in buttonsForDisable)
+        {
+            b.gameObject.SetActive(false);
+        }
+    } 
 }

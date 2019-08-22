@@ -19,6 +19,7 @@ public class Card: ScriptableObject
     public string location;
     public int cardCost;
 
+    private string backGround;
     public string CardName { get => cardName; set => cardName = value; }
     public string CardType { get => cardType; set => cardType = value; }
     public string CardDescription { get => cardDescription; set => cardDescription = value; }
@@ -32,11 +33,12 @@ public class Card: ScriptableObject
     public string Trigger { get => trigger; set => trigger = value; }
     public string Location { get => location; set => location = value; }
     public int CardCost { get => cardCost; set => cardCost = value; }
+    public string BackGround { get => backGround; set => backGround = value; }
 
     public string showCard()
     {
         return "[Name: " + CardName + "]\n"+ "[Cost: " + CardCost + "]\n"+"[Type: " + CardType + "]\n" + "[Desc: " + CardDescription + "]\n" + 
         "[Range: " + CardAttackRange + "]\n" + "[DMG: " + CardAttackDamage + "]\n" + "[KB: " + CardAttackKnockback+ "]\n" + 
-        "[AtkType: " + CardSubType + "]\n"+ "[Character: " + CharacterUsed + "]\n" + "[HazardRange: " + CardHazardRange + "]\n";
+        "[SubType: " + CardSubType + "]\n"+ "[Character: " + CharacterUsed + "]\n" + "[HazardRange: " + CardHazardRange + "]\n";
     }
 }

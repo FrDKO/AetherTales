@@ -32,7 +32,10 @@ public class Fetcher
         return Resources.Load<Card>(FolderPath+"/"+name);
     }
 
-    
+    public Image LoadFromPath(string FullPath, string name)
+    {
+        return Resources.Load<Image>(FullPath+"/"+name);
+    }
 
     
 

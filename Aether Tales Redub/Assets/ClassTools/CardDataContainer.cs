@@ -15,6 +15,8 @@ public  class CardDataContainer: MonoBehaviour
     public Text cardAttackKnockback;
     public Text cardAttackRange;
     public Text cardHazardRange;
+    public Text usedByText;
+    public Text cardBackground;//Send to card somehow???
     public void OnEnable()
     {
         card = (Card)ScriptableObject.CreateInstance("Card");
@@ -26,24 +28,6 @@ public  class CardDataContainer: MonoBehaviour
     public void Update()
     {
         Debug.Log(card.showCard());
-        card.CardName = cardName.text;
-        card.CardDescription = cardDesc.text;
-        card.CardType = cardType.text;
-        card.CardCost=int.Parse(cardCost.text);
-        card.CardSubType = cardSubType.text;
-        card.CardAttackDamage = int.Parse(cardAttackDamage.text);
-        card.CardAttackKnockback = int.Parse(cardAttackKnockback.text);
-        card.CardAttackRange = int.Parse(cardAttackRange.text);
-        card.CardHazardRange = cardHazardRange.text;
-        if(card.CardSubType.Equals(""))
-        {
-            switch(card.cardType)
-            {
-                case("Attack"): card.cardSubType = "Ground Attack"; break;
-                default: card.cardSubType = "Normal"; break;
-            }
-        }
-        
     }
 
     public void finalizeCard()
@@ -60,32 +44,49 @@ public  class CardDataContainer: MonoBehaviour
         }
     }
     private void Validate()
-    {
-        if(card.CardType.Equals("Attack"))
+    {   
+        card.CardName = cardName.text;
+        card.CardDescription = cardDesc.text;
+        card.CardType = cardType.text;
+        card.CardCost=int.Parse(cardCost.text);
+        card.CardSubType = cardSubType.text;
+        card.CardAttackDamage = int.Parse(cardAttackDamage.text);
+        card.CardAttackKnockback = int.Parse(cardAttackKnockback.text);
+        card.CardAttackRange = int.Parse(cardAttackRange.text);
+        card.CardHazardRange = cardHazardRange.text;
+        card.CharacterUsed = usedByText.text;
+        card.BackGround = cardBackground.text;
+        if(card.CardSubType.Equals(""))
         {
-            card.CardHazardRange = "";
+            switch(card.cardType)
+            {
+                case("Attack"): card.cardSubType = "Ground Attack"; break;
+                default: card.cardSubType = "Normal"; break;
+            }
         }
-        if(card.CardType.Equals("Hazard"))
+        switch(card.CardType)
         {
-            card.CardAttackDamage= 0;
-            card.CardAttackKnockback= 0;
-            card.CardAttackRange = 0;
+            case("Attack"):nonHazard();break;
+            case("Hazard"):nonAttack();break;
+            case("Character"):break;
+            default:nonAttack();nonHazard();break;
         }
-        if(card.CardType.Equals("Character"))
-        {
-            
-        }
-        else
-        {
-                card.CardHazardRange = "";
-                card.CardAttackDamage = 0;
-                card.CardAttackKnockback = 0;
-                card.CardAttackRange=0;
-        }
+
     }
-    IEnumerator WaitTimer()
+    public void nonAttack()
     {
-        yield return new WaitForSeconds(5);
+        card.CardAttackDamage = 0;
+        card.CardAttackKnockback = 0;
+        card.CardAttackRange = 0;
+    }
+    public void nonHazard()
+    {
+        card.CardHazardRange = "";
+    }
+
+    public void buildCharacterCard()
+    {
+
     }
 
 }

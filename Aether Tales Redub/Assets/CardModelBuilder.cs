@@ -20,7 +20,7 @@ public class CardModelBuilder : MonoBehaviour
     }
     public void format(Text typeText)
     {   
-
+        if(!typeText.text.Contains("Type"))
         renderGenericCard();
         if(typeText.text.Equals("Attack"))
         {
