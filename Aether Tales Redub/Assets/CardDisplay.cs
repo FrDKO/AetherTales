@@ -122,4 +122,10 @@ public class CardDisplay : MonoBehaviour
             cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/SecondDigit",x[1].ToString());
 
     }
+
+    void OnEnable()
+    {
+        Vector3 Parent = transform.parent.localScale;
+        this.gameObject.transform.localScale = Parent/2;
+    }
 }

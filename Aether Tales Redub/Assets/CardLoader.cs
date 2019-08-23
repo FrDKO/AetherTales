@@ -8,6 +8,7 @@ public class CardLoader : MonoBehaviour
     Card[] allCards;
     
     public GameObject Card;
+    public Transform Parent;
     void OnEnable()
     {
     Debug.Log("Loading Cards");
@@ -16,7 +17,7 @@ public class CardLoader : MonoBehaviour
       {
           if(c.Equals("Null"))
           Debug.Log("Card Cannot be found");
-          GameObject newCard = Instantiate(Card,new Vector3(0,0,0),Quaternion.identity) as GameObject;
+          GameObject newCard = Instantiate(Card,Parent) as GameObject;
           newCard.GetComponent<CardDisplay>().loadView(c);
           newCard.name = c.cardName;
       }

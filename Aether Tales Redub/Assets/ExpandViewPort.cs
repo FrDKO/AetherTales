@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ExpandViewPort : MonoBehaviour
 {
-    // Start is called before the first frame update
+    RectTransform rect;
+
+    public float XSize;
+    public float YSize;
     void Start()
     {
+     rect = GetComponent<RectTransform>();
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        
+       rect.sizeDelta = new Vector2(XSize,YSize);
     }
+
 }
