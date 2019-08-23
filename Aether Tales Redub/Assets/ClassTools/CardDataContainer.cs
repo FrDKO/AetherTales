@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 public  class CardDataContainer: MonoBehaviour
 {
     Card card;
@@ -17,6 +18,7 @@ public  class CardDataContainer: MonoBehaviour
     public Text cardHazardRange;
     public Text usedByText;
     public Text cardBackground;//Send to card somehow???
+    public Texture2D cardArt;
     public void OnEnable()
     {
         card = (Card)ScriptableObject.CreateInstance("Card");
@@ -24,10 +26,6 @@ public  class CardDataContainer: MonoBehaviour
     public Card getCard()
     {
         return this.card;
-    }
-    public void Update()
-    {
-        Debug.Log(card.showCard());
     }
 
     public void finalizeCard()
@@ -43,20 +41,32 @@ public  class CardDataContainer: MonoBehaviour
             Debug.Log(card.showCard());
         }
     }
+    public void DeliverArt(Texture2D texture)
+    {
+        this.cardArt = texture;
+    }
     private void Validate()
     {   
+
+        switch(card.CardType)
+        {
+            case("Attack"):buildAttack();break;
+            case("Hazard"):buildHazard();break;
+            case("Character"):break;
+        }
         card.CardName = cardName.text;
         card.CardDescription = cardDesc.text;
         card.CardType = cardType.text;
-        card.CardCost=int.Parse(cardCost.text);
         card.CardSubType = cardSubType.text;
-        card.CardAttackDamage = int.Parse(cardAttackDamage.text);
-        card.CardAttackKnockback = int.Parse(cardAttackKnockback.text);
-        card.CardAttackRange = int.Parse(cardAttackRange.text);
-        card.CardHazardRange = cardHazardRange.text;
-        card.CharacterUsed = usedByText.text;
+        card.CardCost=int.Parse(cardCost.text);
         card.BackGround = cardBackground.text;
-        if(card.CardSubType.Equals(""))
+
+        if(!card.characterUsed.Contains("Can be"))
+                card.CharacterUsed = usedByText.text;
+        else
+                card.CharacterUsed = "All";
+
+         if(card.CardSubType.Equals("") || card.CardSubType.Contains("Type"))
         {
             switch(card.cardType)
             {
@@ -64,24 +74,31 @@ public  class CardDataContainer: MonoBehaviour
                 default: card.cardSubType = "Normal"; break;
             }
         }
-        switch(card.CardType)
-        {
-            case("Attack"):nonHazard();break;
-            case("Hazard"):nonAttack();break;
-            case("Character"):break;
-            default:nonAttack();nonHazard();break;
-        }
-
+            
+            var bytes= cardArt.EncodeToPNG();
+            try{
+            File.WriteAllBytes(Application.dataPath + "/Resources/CardArt/"+card.CardName+".png",bytes);
+            }
+            catch{
+                Debug.Log("Problems occured with saving the texture");
+            }
+           
+            
     }
-    public void nonAttack()
+
+    public void buildAttack()
+    {
+        card.CardAttackDamage = int.Parse(cardAttackDamage.text);
+        card.CardAttackKnockback = int.Parse(cardAttackKnockback.text);
+        card.CardAttackRange = int.Parse(cardAttackRange.text);
+        card.CardHazardRange = "";
+    }
+    public void buildHazard()
     {
         card.CardAttackDamage = 0;
         card.CardAttackKnockback = 0;
         card.CardAttackRange = 0;
-    }
-    public void nonHazard()
-    {
-        card.CardHazardRange = "";
+        card.cardHazardRange = cardHazardRange.text;
     }
 
     public void buildCharacterCard()

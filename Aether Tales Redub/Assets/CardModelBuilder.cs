@@ -14,9 +14,11 @@ public class CardModelBuilder : MonoBehaviour
 
     public SpriteImage hazardRangeImage;
 
+    public Image cardArt;
     void OnEnable()
     {
         formatInitialize();
+        cardArt.gameObject.SetActive(false);
     }
     public void format(Text typeText)
     {   

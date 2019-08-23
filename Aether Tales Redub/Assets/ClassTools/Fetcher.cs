@@ -32,11 +32,14 @@ public class Fetcher
         return Resources.Load<Card>(FolderPath+"/"+name);
     }
 
-    public Image LoadFromPath(string FullPath, string name)
+    public Sprite LoadFromPath(string FullPath, string name)
     {
-        return Resources.Load<Image>(FullPath+"/"+name);
+        return Resources.Load<Sprite>(FullPath+"/"+name);
     }
 
-    
+    public Card[] LoadAllCards()
+    {
+        return Resources.LoadAll<Card>("Cards");
+    }
 
 }

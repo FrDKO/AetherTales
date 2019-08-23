@@ -11,7 +11,7 @@ public class SliderComponent : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    public void OnEnable()
+    public void OnDisable()
     {
         slider.value = 0;
     }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b736a0f36a79c9c4c8ecea905a9409cd, type: 3}
+  m_Name: Test Card 3
+  m_EditorClassIdentifier: 
+  cardName: Test Card 3
+  cardType: Movement
+  cardDescription: Nothing special about this card
+  cardAttackRange: 0
+  cardAttackDamage: 0
+  cardAttackKnockback: 0
+  characterUsed: Orcane
+  cardSubType: Reflex
+  cardHazardRange: Adjacent
+  effect: 
+  trigger: 
+  location: 
+  cardCost: 7
+  backGround: Abyss

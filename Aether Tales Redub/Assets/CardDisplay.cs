@@ -24,55 +24,102 @@ public class CardDisplay : MonoBehaviour
 
     public Image cardArt;
 
-    public void View(Card c)
+    public void loadView(Card c)
     {
+    
        this.card = c;
+       Debug.Log(c.showCard());
+
+       switch(card.cardType)
+       {
+           case("Attack"):buildAttack();break;
+           case("Hazard"):buildHazard();break;
+           case("Character"):break;
+           default: buildOther(); break;
+       }
        cardName.text = card.cardName;
        cardDescription.text = card.cardDescription;
        cardSubType.text = card.cardSubType;
-       cardBackground.sprite = fetcher.LoadFromPath("CardTemplates/Backgrounds",card.BackGround).sprite;
-       cardAttackRange.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Knockback",""+card.cardAttackKnockback).sprite;
-       cardAttackRange.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Range",""+card.cardAttackRange).sprite;
-       characterUsed.sprite = fetcher.LoadFromPath("CardTemplates/Universal/UseSymbols",card.characterUsed).sprite;
-       cardHazardRange.sprite = fetcher.LoadFromPath("CardTemplates/Hazard",card.CardHazardRange).sprite;
-       cardType.sprite = fetcher.LoadFromPath("CardTemplates/CardTextures",card.cardType).sprite;
-       cardArt.sprite = fetcher.LoadFromPath("CardArt",card.cardName).sprite;
+       cardBackground.sprite = fetcher.LoadFromPath("CardTemplates/Backgrounds",card.BackGround);
+       characterUsed.sprite = fetcher.LoadFromPath("CardTemplates/Universal/UseSymbols",card.characterUsed);
+       cardType.sprite = fetcher.LoadFromPath("CardTemplates/CardTextures",card.cardType);
+       cardArt.sprite = fetcher.LoadFromPath("CardArt",card.cardName);
        LoadCosts();
-       LoadDamage();
     }
 
+    private void buildAttack()
+    {
+       cardSubType.gameObject.transform.localPosition = new Vector2(12,-47);
+       cardAttackKnockback.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Knockback",""+card.cardAttackKnockback);
+       cardAttackRange.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Range",""+card.cardAttackRange);
+       LoadDamage();
+       cardHazardRange.gameObject.SetActive(false);
+    }
+    private void buildHazard()
+    {
+            cardSubType.gameObject.transform.localPosition = new Vector2(12,-47);
+             cardHazardRange.sprite = fetcher.LoadFromPath("CardTemplates/Hazard",card.CardHazardRange);
+             cardAttackRange.gameObject.SetActive(false);
+             cardAttackKnockback.gameObject.SetActive(false);
+             cardAttackDamageDigit1.gameObject.SetActive(false);
+             cardAttackDamageDigit2.gameObject.SetActive(false);
+
+    }
+    private void buildCharacter()
+    {
+
+    }
+    private void buildOther()
+    {
+        cardSubType.gameObject.transform.localPosition = new Vector2(-26,-47);
+        cardAttackKnockback.gameObject.SetActive(false);
+        cardAttackDamageDigit1.gameObject.SetActive(false);
+        cardAttackDamageDigit2.gameObject.SetActive(false);
+        cardAttackRange.gameObject.SetActive(false);
+        cardHazardRange.gameObject.SetActive(false);
+    }
     private void LoadCosts()
     {
-        if(card.cardCost>0 && card.cardCost<10)
+        //Assume Cost = 7
+        string x = ""+card.cardCost; //"7"
+        if(card.cardCost < 10) // two digits
         {
-            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","0").sprite;
-            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit",""+card.cardCost).sprite;
-        }
-        else if(card.cardCost.Equals(0))
+            x = "0"+x;//"07"
+        }   
+
+        switch(x)
         {
-            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","0").sprite;
-            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit","0Empty").sprite;
+            case("10"):
+            {
+            cardCostDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","1");
+            cardCostDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit","0Full");
+            break;
+            }
+            case("00"):   
+            {
+            cardCostDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","0");
+            cardCostDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit","0");
+            break;
+            }
+            default: 
+            {
+            cardCostDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","0");
+            cardCostDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit",x[1].ToString());//"7"
+            break;
+            }
         }
-        else if (card.cardCost.Equals(10))
-        {
-            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","1").sprite;
-            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit","0Full").sprite;
-        }
+        
     }
 
     private void LoadDamage()
     {
-        string x = ""+card.cardCost; 
+        string x = ""+card.cardAttackDamage; 
         if(x.Length<2) // two digits
         {
-            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/FirstDigit","0").sprite;
-            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/SecondDigit",""+card.CardAttackDamage).sprite;
+            x = "0"+x;
         }
-        else if (x.Length.Equals(2))
-        {
-            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/FirstDigit",x[0].ToString()).sprite;
-            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/SecondDigit",x[1].ToString()).sprite;
-        }
+            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/FirstDigit",x[0].ToString());
+            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/SecondDigit",x[1].ToString());
 
     }
 }

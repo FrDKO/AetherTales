@@ -23,4 +23,9 @@ public class TextFromInput : MonoBehaviour
         if(!text.text.Equals("Normal") && !text.text.Contains("Type"))
         cardText.text = text.text;
     }
+
+    void OnEnable()
+    {
+        cardText.text = "";
+    }
 }

@@ -19,7 +19,7 @@ public class Card: ScriptableObject
     public string location;
     public int cardCost;
 
-    private string backGround;
+    public string backGround;
     public string CardName { get => cardName; set => cardName = value; }
     public string CardType { get => cardType; set => cardType = value; }
     public string CardDescription { get => cardDescription; set => cardDescription = value; }

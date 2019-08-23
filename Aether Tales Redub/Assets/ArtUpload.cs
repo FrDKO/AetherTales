@@ -22,12 +22,8 @@ public class ArtUpload : MonoBehaviour
             texture.LoadImage(fileContent,false);
             Sprite cardArt = Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f));
             cardArtImage.sprite = cardArt;
-            string name = cardDataContainer.getCard().cardName;
-            Debug.Log("Sprite is being saved.");
-            var bytes= texture.EncodeToPNG();
-            Destroy(texture);
-            File.WriteAllBytes(Application.dataPath + "/Resources/CardArt/" + name+".png",bytes);
-
+            cardDataContainer.DeliverArt(texture);
+            cardArtImage.gameObject.SetActive(true);
         }
    }
 

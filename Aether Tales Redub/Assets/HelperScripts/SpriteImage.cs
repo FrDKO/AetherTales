@@ -38,7 +38,7 @@ public class SpriteImage : MonoBehaviour
     try
        {
            if(!fetcher.LoadSprite(spriteName.text).Equals(null))
-       this.GetComponent<Image>().sprite = fetcher.LoadSprite(spriteName.text);
+            this.GetComponent<Image>().sprite = fetcher.LoadSprite(spriteName.text);
        }
     catch
        {
