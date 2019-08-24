@@ -24,6 +24,7 @@ public class CardDisplay : MonoBehaviour
 
     public Image cardArt;
 
+
     public void loadView(Card c)
     {
     
@@ -123,9 +124,12 @@ public class CardDisplay : MonoBehaviour
 
     }
 
+    public float scaleFactor = 1;
+
+    
     void OnEnable()
     {
-        Vector3 Parent = transform.parent.localScale;
-        this.gameObject.transform.localScale = Parent/2;
+        cardArt.gameObject.SetActive(true);
+        this.gameObject.transform.localScale = transform.parent.localScale/1.8f;
     }
 }
