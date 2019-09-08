@@ -16,9 +16,9 @@ public  class CardDataContainer: MonoBehaviour
     public Text cardAttackKnockback;
     public Text cardAttackRange;
     public Text cardHazardRange;
-    public Text usedByText;
-    public Text cardBackground;//Send to card somehow???
-    public Texture2D cardArt;
+    public Image UsedByImage;
+    public Text cardBackground;
+    Texture2D cardArt;
     public void OnEnable()
     {
         card = (Card)ScriptableObject.CreateInstance("Card");
@@ -33,6 +33,7 @@ public  class CardDataContainer: MonoBehaviour
         Validate();
         try
         {
+           Debug.Log("Card is being turned into asset");
            ScriptableObjectUtility.CreateAsset<Card>(card); 
            //StartCoroutine("WaitTimer()");
         }
@@ -60,11 +61,7 @@ public  class CardDataContainer: MonoBehaviour
         card.CardSubType = cardSubType.text;
         card.CardCost=int.Parse(cardCost.text);
         card.BackGround = cardBackground.text;
-
-        if(!card.characterUsed.Contains("Can be"))
-                card.CharacterUsed = usedByText.text;
-        else
-                card.CharacterUsed = "All";
+        card.CharacterUsed = UsedByImage.sprite.name;
 
          if(card.CardSubType.Equals("") || card.CardSubType.Contains("Type"))
         {
@@ -77,13 +74,13 @@ public  class CardDataContainer: MonoBehaviour
             
             var bytes= cardArt.EncodeToPNG();
             try{
-            File.WriteAllBytes(Application.dataPath + "/Resources/CardArt/"+card.CardName+".png",bytes);
+            File.WriteAllBytes(Application.dataPath + "Resources/CardArt/"+card.CardName+".png",bytes);
             }
             catch{
                 Debug.Log("Problems occured with saving the texture");
             }
            
-            
+            Debug.Log("Card has been validated");
     }
 
     public void buildAttack()

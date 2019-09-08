@@ -14,7 +14,7 @@ public class ScriptableObjectUtility
  
 	
  
-		string assetPathAndName =   "Assets/Resources/Cards/" + asset.cardName + ".asset";
+		string assetPathAndName =   "Assets/Cards/" + asset.cardName + ".asset";
  
 		AssetDatabase.CreateAsset (asset, assetPathAndName);
 		AssetDatabase.SaveAssets ();

@@ -5,22 +5,21 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
 
-    Fetcher fetcher = new Fetcher();
+    
     Card card;
-
     public Text cardName;
     public Text cardDescription;
     public Text cardSubType;
-    public Image cardBackground;
-    public Image cardCostDigit1;
-    public Image cardCostDigit2;
-    public Image cardAttackRange;
-    public Image cardAttackDamageDigit1;
-    public Image cardAttackDamageDigit2;
-    public Image cardAttackKnockback;
-    public Image characterUsed;
-    public Image cardHazardRange;
-    public Image cardType;
+    public SpriteImage cardBackground;
+    public SpriteImage cardCostDigit1;
+    public SpriteImage cardCostDigit2;
+    public SpriteImage cardAttackRange;
+    public SpriteImage cardAttackDamageDigit1;
+    public SpriteImage cardAttackDamageDigit2;
+    public SpriteImage cardAttackKnockback;
+    public SpriteImage characterUsed;
+    public SpriteImage cardHazardRange;
+    public SpriteImage cardType;
 
     public Image cardArt;
 
@@ -29,8 +28,6 @@ public class CardDisplay : MonoBehaviour
     {
     
        this.card = c;
-       Debug.Log(c.showCard());
-
        switch(card.cardType)
        {
            case("Attack"):buildAttack();break;
@@ -40,26 +37,33 @@ public class CardDisplay : MonoBehaviour
        }
        cardName.text = card.cardName;
        cardDescription.text = card.cardDescription;
+       if(!card.cardSubType.Equals("Normal"))
        cardSubType.text = card.cardSubType;
-       cardBackground.sprite = fetcher.LoadFromPath("CardTemplates/Backgrounds",card.BackGround);
-       characterUsed.sprite = fetcher.LoadFromPath("CardTemplates/Universal/UseSymbols",card.characterUsed);
-       cardType.sprite = fetcher.LoadFromPath("CardTemplates/CardTextures",card.cardType);
-       cardArt.sprite = fetcher.LoadFromPath("CardArt",card.cardName);
+       else
+       cardSubType.text = "";
+       cardBackground.setSprite(card.BackGround);
+       characterUsed.setSprite(card.CharacterUsed);
+       cardType.setSprite(card.CardType);
        LoadCosts();
+    }
+
+    public void setCardArt(Sprite s)
+    {
+        cardArt.sprite = s;
     }
 
     private void buildAttack()
     {
        cardSubType.gameObject.transform.localPosition = new Vector2(12,-47);
-       cardAttackKnockback.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Knockback",""+card.cardAttackKnockback);
-       cardAttackRange.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Range",""+card.cardAttackRange);
+       cardAttackKnockback.setSprite(card.CardAttackKnockback.ToString());
+       cardAttackRange.setSprite(card.CardAttackRange.ToString());
        LoadDamage();
        cardHazardRange.gameObject.SetActive(false);
     }
     private void buildHazard()
     {
             cardSubType.gameObject.transform.localPosition = new Vector2(12,-47);
-             cardHazardRange.sprite = fetcher.LoadFromPath("CardTemplates/Hazard",card.CardHazardRange);
+             cardHazardRange.setSprite(card.CardHazardRange);
              cardAttackRange.gameObject.SetActive(false);
              cardAttackKnockback.gameObject.SetActive(false);
              cardAttackDamageDigit1.gameObject.SetActive(false);
@@ -92,20 +96,20 @@ public class CardDisplay : MonoBehaviour
         {
             case("10"):
             {
-            cardCostDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","1");
-            cardCostDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit","0Full");
+            cardCostDigit1.setSprite("1");
+            cardCostDigit2.setSprite("0Full");
             break;
             }
             case("00"):   
             {
-            cardCostDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","0");
-            cardCostDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit","0");
+            cardCostDigit1.setSprite("0");
+            cardCostDigit2.setSprite("0");
             break;
             }
             default: 
             {
-            cardCostDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/FirstDigit","0");
-            cardCostDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Universal/Cost/SecondDigit",x[1].ToString());//"7"
+            cardCostDigit1.setSprite("0");
+            cardCostDigit2.setSprite(x[1].ToString());//"7"
             break;
             }
         }
@@ -119,8 +123,8 @@ public class CardDisplay : MonoBehaviour
         {
             x = "0"+x;
         }
-            cardAttackDamageDigit1.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/FirstDigit",x[0].ToString());
-            cardAttackDamageDigit2.sprite = fetcher.LoadFromPath("CardTemplates/Attack/Damage/SecondDigit",x[1].ToString());
+            cardAttackDamageDigit1.setSprite(x[0].ToString());
+            cardAttackDamageDigit2.setSprite(x[1].ToString());
 
     }
 

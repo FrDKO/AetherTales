@@ -22,32 +22,15 @@ public class CardModelBuilder : MonoBehaviour
     }
     public void format(Text typeText)
     {   
-        if(!typeText.text.Contains("Type"))
+        if(typeText.text.Contains("Type"))
+            return;
         renderGenericCard();
-        if(typeText.text.Equals("Attack"))
+        switch(typeText.text)
         {
-           //Debug.Log("Currently Formatting a " + typeText.text);
-            formatAttackCard();
-        }
-        else if(typeText.text.Equals("Hazard"))
-        {
-            //Debug.Log("Currently Formatting a " + typeText.text);
-            formatHazardCard();
-        }
-        else if(typeText.text.Equals("Character"))
-        {
-            //Debug.Log("Currently Formatting a " + typeText.text);
-            formatCharacterCard();
-        }
-        else if(typeText.text.Length>0)
-        {
-            //Debug.Log("Currently Formatting a " + typeText.text);
-            formatOtherCard();
-        }
-        else 
-        {
-            //Debug.Log("Starting card Builder");
-            formatInitialize();
+            case("Attack"): formatAttackCard(); break;
+            case("Hazard"): formatHazardCard();break;
+            case("Character"): formatCharacterCard(); break;
+            default: formatOtherCard(); break;
         }
     }
     public void formatInitialize()
@@ -67,6 +50,7 @@ public class CardModelBuilder : MonoBehaviour
 
     }
 
+    //This formats a default Attack card
     private void formatAttackCard()
     {
         foreach(SpriteImage sprite in attackImages)
@@ -74,6 +58,7 @@ public class CardModelBuilder : MonoBehaviour
         
         hazardRangeImage.Deactivate();
     }
+    //This formats a default Hazard card
     private void formatHazardCard()
     {
         
@@ -81,14 +66,26 @@ public class CardModelBuilder : MonoBehaviour
         sprite.Deactivate();
         hazardRangeImage.Activate();
     }
+    //Overload for Hazard Card Input
+    private void formatHazardCard(Card card)
+    {
+
+    }
+    //This formats a default Character card
     private void formatCharacterCard()
     {
         formatInitialize();
     }
-private void formatOtherCard()
+    //Overload for Character card Input
+    private void formatCharacterCard(Card card)
+    {
+        formatInitialize();
+    }
+    //This formats any standard card
+    private void formatOtherCard()
    {
         TextFromInput subTypeText = texts[1];
-        subTypeText.gameObject.GetComponent<Text>().transform.localPosition = new Vector3(-26f,-47f,0);
+        subTypeText.gameObject.GetComponent<Text>().transform.localPosition = new Vector3(-26f,-44f,0);
         hazardRangeImage.Deactivate();
         foreach(SpriteImage sprite in attackImages)
         sprite.Deactivate();
@@ -116,11 +113,8 @@ private void formatOtherCard()
           cost1.setSprite(cardCost.text[0].ToString());
           cost2.setSprite(cardCost.text[1].ToString());
       }
-
-       
-       
    }   
-   public void setDamage(Text cardDamage)
+  public void setDamage(Text cardDamage)
    {
        char val1;
        char val2;
@@ -134,15 +128,16 @@ private void formatOtherCard()
        dmg2.setSprite(val2.ToString());
    }
 
+  
+
    private void renderGenericCard()
    {
        //Debug.Log("Generics rendered");
        foreach(SpriteImage sprite in genericCardImages)
         sprite.Activate();
         TextFromInput subTypeText = texts[1];
-        subTypeText.gameObject.GetComponent<Text>().transform.localPosition = new Vector3(10.5f,-47f,0);
-        foreach(TextFromInput text in texts)
+        subTypeText.gameObject.GetComponent<Text>().transform.localPosition = new Vector3(10.5f,-44f,0);
+         foreach(TextFromInput text in texts)
         text.GetComponent<Text>().text = "";
-
    }
 }

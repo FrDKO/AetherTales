@@ -4,46 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SpriteImage : MonoBehaviour
 {
-   public string path;
-   public string DefaultSprite;
-   private Fetcher fetcher = new Fetcher();
+   
+   public List<Sprite> spriteList;
+   public string defaultSprite;
    public void OnEnable()
    {
        setToDefault();
    }
-   public void Awake()
-   {
-       fetcher.setPath(path);
-   }
    
    public void setToDefault()
    {
-       this.GetComponent<Image>().sprite = fetcher.LoadSprite(DefaultSprite);
+       setSprite(defaultSprite);
    }
    public void setSprite(string spriteName)
    {
-    try
-       {
-        if(!fetcher.LoadSprite(spriteName).Equals(null))
-       this.GetComponent<Image>().sprite = fetcher.LoadSprite(spriteName);
-       }
-    catch
-       {
-           Debug.Log("Sprite does not exist");
-       }
+        foreach(Sprite sprite in spriteList)
+        {
+            if(sprite.name.Equals(spriteName))
+                this.GetComponent<Image>().sprite = sprite;
+        }
    }
+
    public void setSprite(Text spriteName)
    {
-      
-    try
-       {
-           if(!fetcher.LoadSprite(spriteName.text).Equals(null))
-            this.GetComponent<Image>().sprite = fetcher.LoadSprite(spriteName.text);
-       }
-    catch
-       {
-           Debug.Log("Sprite does not exist");
-       }
+        foreach(Sprite sprite in spriteList)
+        {
+            if(sprite.name.Equals(spriteName.text))
+                this.GetComponent<Image>().sprite = sprite;
+        }
    }
 
     public void Deactivate()
