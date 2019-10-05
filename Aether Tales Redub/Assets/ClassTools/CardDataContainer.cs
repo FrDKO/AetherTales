@@ -48,13 +48,6 @@ public  class CardDataContainer: MonoBehaviour
     }
     private void Validate()
     {   
-
-        switch(card.CardType)
-        {
-            case("Attack"):buildAttack();break;
-            case("Hazard"):buildHazard();break;
-            case("Character"):break;
-        }
         card.CardName = cardName.text;
         card.CardDescription = cardDesc.text;
         card.CardType = cardType.text;
@@ -62,6 +55,13 @@ public  class CardDataContainer: MonoBehaviour
         card.CardCost=int.Parse(cardCost.text);
         card.BackGround = cardBackground.text;
         card.CharacterUsed = UsedByImage.sprite.name;
+
+        switch(card.CardType)
+        {
+            case("Attack"):buildAttack();break;
+            case("Hazard"):buildHazard();break;
+            case("Character"):break;
+        }
 
          if(card.CardSubType.Equals("") || card.CardSubType.Contains("Type"))
         {
@@ -74,12 +74,11 @@ public  class CardDataContainer: MonoBehaviour
             
             var bytes= cardArt.EncodeToPNG();
             try{
-            File.WriteAllBytes(Application.dataPath + "Resources/CardArt/"+card.CardName+".png",bytes);
+            File.WriteAllBytes(Application.dataPath + "CardArt/"+card.CardName+".png",bytes);
             }
             catch{
                 Debug.Log("Problems occured with saving the texture");
             }
-           
             Debug.Log("Card has been validated");
     }
 
